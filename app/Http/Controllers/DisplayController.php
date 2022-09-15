@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\PrintSend;
 use App\Models\SlideShow;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 use App\Models\Display;
 use App\Models\PrintFile;
 use Illuminate\Support\Str;
@@ -66,15 +67,20 @@ class DisplayController extends Controller
             $res=$decoded;
         //$display=Display::find($decoded->dat;
             $view= View::first('print.success',  $res->data);
+            $html = view('print.success',  $res->data)->render();
     /// faker come up with name
 
                     $name=Str::uuid(); //make that unique
 
-                    Storage::disk('local')->put(''.$name.'.xml', $view); ///put fake name here
+                    Storage::disk('local')->put(''.$name.'.html',$html); ///put fake name here
                     $print_file=PrintFile::firstOrCreate(['display_id'=>$res->data['display_id'],'file'=>$name]);
                     $display=Display::find($res->data['display_id']);
                     $display->print_files()->attach($print_file->id);
                     $display->print=true;
             broadcast(new PrintSend($display));
+        // $client = new Client();
+        // // $res = $client->request('POST', $url);
+        // $headers = ['X-Foo' => 'Bar'];
+        // $request= new Req('POST', $url, $headers, $json);
        }
 }

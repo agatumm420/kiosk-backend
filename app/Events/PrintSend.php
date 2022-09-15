@@ -34,8 +34,8 @@ class PrintSend implements ShouldBroadcast
      */
 
      public function brodcastWith(){
-        $file= $display->print_files()->where('printed', false)->get();
-        return response()->file(public_path().'/storage/'.$screen_s->image);
+        $file= $this->display->print_files()->where('printed', false)->get();
+        return response()->file(public_path().'/storage/'.$file);
 
      }
     public function broadcastOn()

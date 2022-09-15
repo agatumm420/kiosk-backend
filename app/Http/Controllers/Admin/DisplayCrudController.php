@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\DisplayRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use PhpParser\Node\Stmt\Echo_;
 
 /**
  * Class DisplayCrudController
@@ -50,6 +51,7 @@ class DisplayCrudController extends CrudController
 
         'model'     => "App\Models\SlideShow",
         'attribute' => 'name',]);
+        CRUD::addColumn(['label'=>"Czy drukuje?", "name"=>'print' , 'type'=>'select_from_array']);
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -85,6 +87,15 @@ class DisplayCrudController extends CrudController
                  return $query->orderBy('name', 'ASC')->get();
              }),
             ]);
+        CRUD::addField([   // select_from_array
+            'name'        => 'print',
+            'label'       => "Czy drukuje?",
+            'type'        => 'select_from_array',
+            'options'     => [true => 'tak', false => 'nie'],
+            'allows_null' => false,
+            'default'     => false,
+            // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

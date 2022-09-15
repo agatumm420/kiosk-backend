@@ -25,7 +25,7 @@ class ScreenSaver extends Model
     });
     }
     public function slide_shows(){
-      return  $this->belongsToMany(SlideShow::class, 'slide_show_sreen_saver','slide_show_id','screen_saver_id' );
+      return  $this->belongsToMany(SlideShow::class, 'slide_show_screen_saver','slide_show_id','screen_saver_id' );
     }
     public function setImageAttribute($value)
     {

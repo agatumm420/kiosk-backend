@@ -11,7 +11,7 @@ class SlideShow extends Model
     use HasFactory;
     use CrudTrait;
     public function screen_savers(){
-       return $this->belongsToMany(ScreenSaver::class, 'slide_show_sreen_saver', 'slide_show_id','screen_saver_id',);
+       return $this->belongsToMany(ScreenSaver::class, 'slide_show_screen_saver', 'slide_show_id','screen_saver_id',);
     }
     public function displays(){
         return $this->hasMany(Display::class);
