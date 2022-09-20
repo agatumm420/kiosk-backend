@@ -62,25 +62,38 @@ class DisplayController extends Controller
                         ]
                     ]);
        }
-       public function activate_and_print($json){
-            $decoded=json_decode($json);
-            $res=$decoded;
-        //$display=Display::find($decoded->dat;
-            $view= View::first('print.success',  $res->data);
-            $html = view('print.success',  $res->data)->render();
-    /// faker come up with name
+       public function activate_and_print(Request $request){
 
-                    $name=Str::uuid(); //make that unique
+        $decoded=$request->input('data');
+        $res=$decoded;
+    //$display=Display::find($decoded->dat;
+        //$view=  View::make('print.success',$res)->render();
+        $html = view('print.success', $res)->render();
 
-                    Storage::disk('local')->put(''.$name.'.html',$html); ///put fake name here
-                    $print_file=PrintFile::firstOrCreate(['display_id'=>$res->data['display_id'],'file'=>$name]);
-                    $display=Display::find($res->data['display_id']);
-                    $display->print_files()->attach($print_file->id);
-                    $display->print=true;
-            broadcast(new PrintSend($display));
-        // $client = new Client();
-        // // $res = $client->request('POST', $url);
-        // $headers = ['X-Foo' => 'Bar'];
-        // $request= new Req('POST', $url, $headers, $json);
-       }
+/// faker come up with name
+
+                $name=uniqid(); //make that unique
+
+                Storage::disk('local')->put(''.$name.'.html',$html); ///put fake name here
+                //dd($name.'.html');
+                $print_file=PrintFile::firstOrNew(
+                 ['display_id'=>$res['display_id']],['file'=>$name],['printed'=>false], ['html'=>$html]);
+                    $print_file->file=$name;
+                    $print_file->printed=false;
+                    $print_file->html=$html;
+                 $print_file->save();
+                //dd($print_file);
+
+                $display=Display::find($res['display_id']);
+                $display->print_files()->attach($print_file->id);
+
+                $display->print=true;
+                $display->save();
+                broadcast(new PrintSend($display));
+        return response()->json([
+            'display_id'=>$display->id,
+            'print_file'=>$display->print_files(),
+            'print'=>$display->print,
+        ]);
+    }
 }

@@ -20,11 +20,23 @@ class PrintSend implements ShouldBroadcast
      *
      * @return void
      */
+    public $display;
+    public $file;
+    public $data;
     public function __construct(Display $display)
     {
         $this->display= $display;
+        $this->file=$display->print_files()->where('printed',false)->first()->get();
+        //dd($this->file);
+        $this->data=[
+            'display_id'=>$this->display->id,
+            'file_name'=>$this->file[0]->file,
+            'html'=>$this->file[0]->html,
 
-        //
+
+        ];
+
+
     }
 
     /**
@@ -32,10 +44,17 @@ class PrintSend implements ShouldBroadcast
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-
+        public function broadcastAs(){
+        return 'print.send';
+    }
      public function brodcastWith(){
         $file= $this->display->print_files()->where('printed', false)->get();
-        return response()->file(public_path().'/storage/'.$file);
+        return response()->json([
+            'data'=>[
+                'file_name'=>$file->name,
+                'html'=>$file->html,
+            ]
+        ]);
 
      }
     public function broadcastOn()
