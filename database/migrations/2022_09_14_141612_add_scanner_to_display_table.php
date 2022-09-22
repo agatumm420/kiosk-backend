@@ -14,10 +14,10 @@ class AddScannerToDisplayTable extends Migration
     public function up()
     {
         Schema::table('displays', function (Blueprint $table) {
-            $table->bigInteger('slide_show_id')->nullable();
-            $table->foreign('slide_show_id')
-              ->references('id')
-              ->on('slide_shows')->onDelete('cascade');
+
+            $table->foreignId('slide_show_id')->constrained()
+				->onDelete('cascade')
+				->onUpdate('cascade');
         });
     }
 

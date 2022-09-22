@@ -15,14 +15,14 @@ class CreateDisplayPrintFilesTable extends Migration
     {
         Schema::create('display_print_file', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('display_id');
-            $table->foreign('display_id')
-              ->references('id')
-              ->on('displays')->onDelete('cascade');
-            $table->bigInteger('print_file_id');
-            $table->foreign('print_file_id')
-              ->references('id')
-              ->on('print_files')->onDelete('cascade');
+
+            $table->foreignId('display_id')->constrained()
+				->onDelete('cascade')
+				->onUpdate('cascade');
+
+            $table->foreignId('print_file_id')->constrained()
+				->onDelete('cascade')
+				->onUpdate('cascade');
             $table->timestamps();
         });
     }

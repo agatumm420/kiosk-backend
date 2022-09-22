@@ -15,14 +15,14 @@ class CreateSlideShowScreenSaverTable extends Migration
     {
         Schema::create('slide_show_screen_saver', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('screen_saver_id');
-            $table->foreign('screen_saver_id')
-              ->references('id')
-              ->on('screen_savers')->onDelete('cascade');
-            $table->bigInteger('slide_show_id');
-            $table->foreign('slide_show_id')
-              ->references('id')
-              ->on('slide_shows')->onDelete('cascade');
+
+            $table->foreignId('screen_saver_id')->constrained()
+				->onDelete('cascade')
+				->onUpdate('cascade');
+
+            $table->foreignId('slide_show_id')->constrained()
+				->onDelete('cascade')
+				->onUpdate('cascade');
         });
     }
 

@@ -15,10 +15,10 @@ class CreatePrintFilesTable extends Migration
     {
         Schema::create('print_files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('display_id');
-            $table->foreign('display_id')
-              ->references('id')
-              ->on('displays')->onDelete('cascade');
+            //$table->bigInteger('display_id');
+            $table->foreignId('display_id')->constrained()
+				->onDelete('cascade')
+				->onUpdate('cascade');
             $table->string('file');
             $table->boolean('printed');
             $table->timestamps();
