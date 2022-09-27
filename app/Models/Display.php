@@ -10,7 +10,7 @@ class Display extends Model
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     protected $table='displays';
-    protected $fillable=["name","print"];
+    protected $fillable=["name","print", 'channel'];
     use HasFactory;
     use CrudTrait;
     public function print_files(){

@@ -59,6 +59,6 @@ class PrintSend implements ShouldBroadcast
      }
     public function broadcastOn()
     {
-        return new Channel($this->display->name);
+        return new Channel($this->display->channel);
     }
 }

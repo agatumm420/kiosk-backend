@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\View;
 
 class DisplayController extends Controller
 {
+    public function register_display(Request $request){
+        $res=$request->input('data');
+        $display=Display::firstOrNew(['channel'=>$res['channel']], ['name'=>$res['name']], ['print'=>false]);
+        $display->channel=$res['channel'];
+        $display->name=$res['name'];
+        $display->print=false;
+        $display->save();
+        return response()->json([
+            'data'=>[
+                'id'=>$display->id,
+                'name'=>$display->name,
+                'channel'=>$display->channel,
+
+            ]
+        ]);
+    }
     public function get_slide_show(Display $display){
         // $user = auth('api')->user() ?? null;
       //    foreach($display->slide_show()->screen_savers() as $screen_s){
