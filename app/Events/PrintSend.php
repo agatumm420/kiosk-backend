@@ -30,6 +30,7 @@ class PrintSend implements ShouldBroadcast
         //dd($this->file);
         $this->data=[
             'display_id'=>$this->display->id,
+            'file_id'=>$this->file[0]->id,
             'file_name'=>$this->file[0]->file,
             'html'=>$this->file[0]->html,
 

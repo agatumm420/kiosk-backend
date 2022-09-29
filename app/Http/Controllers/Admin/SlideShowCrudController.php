@@ -80,9 +80,7 @@ class SlideShowCrudController extends CrudController
             'model'=>'App\Models\ScreenSaver',
             'attribute'=>'id',
             'pivot'     => false,
-            'options'   => (function ($query) {
-                return $query->orderBy('name', 'ASC')->get();
-            }),
+
         ]);
         CRUD::addField([
             'label'=>"Ekrany",
@@ -92,9 +90,7 @@ class SlideShowCrudController extends CrudController
             'model'=>'App\Models\Display',
             'attribute'=>'name',
             'pivot'     => true,
-            'options'   => (function ($query) {
-                return $query->orderBy('name', 'ASC')->get();
-            }),
+
         ]);
 
         /**

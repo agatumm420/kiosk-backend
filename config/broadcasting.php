@@ -38,7 +38,7 @@ return [
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'encrypted' => true,
-                'host' => 'ws://ws.galaxy-centrum.pl',
+                'host' => 'http://ws.galaxy-centrum.pl',
                 'port' => 6002,
                 'scheme' => 'http'
             ],

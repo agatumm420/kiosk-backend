@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DisplayController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\PrintFileController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,3 +31,5 @@ Route::get('/gastronomy/{slug}', [ShopController::class , 'gastronomy_slug']);
 Route::get('/service', [ShopController::class , 'service']);
 Route::get('/service/{slug}', [ShopController::class , 'service_slug']);
 Route::get('/plan/{kiosk}', [ShopController::class , 'plan']);
+Route::get('/stop_print/{file}', [PrintFileController::class, 'stop_print']);
+
