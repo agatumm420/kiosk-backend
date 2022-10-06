@@ -6,12 +6,13 @@ use App\Events\PrintSend;
 use App\Models\SlideShow;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Carbon\Carbon;
 use App\Models\Display;
 use App\Models\PrintFile;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
-
+use Illuminate\Support\Facades\DB;
 class DisplayController extends Controller
 {
     public function register_display(Request $request){
@@ -55,6 +56,39 @@ class DisplayController extends Controller
                  }
 
           return $response_array;
+     }
+     public function get_displays(){
+       return Display::all(); //czy mogą być dwa w tej samej
+     }
+     public function get_schedule(Request $request,Display $display){
+        $res=$request->input('data');
+        $request_date= Carbon::create($res['year'], $res['month'], 1);
+
+      //  $show=SlideShow::where('id',$display->slide_show_id);
+      $show=SlideShow::find($display->slide_show_id);
+       // return $show->screen_savers()->where('publish_since', '>', $request_date)->where('published_since', '<',$request_date->endOfMonth())->where('published_since', null)->get();
+     // DB::table()
+        //return $show->screen_savers()->whereBetween('publish_since', [$request_date, $request_date->endOfMonth()])->get();
+        //dd( $request_date->endOfMonth());
+       // return $show->screen_savers()->where('publish_since', '>', $request_date)->get(); //second  where doesn t work
+        //   return response()->json([
+        //     'data'=>[
+
+        //     ]
+        //     ]);
+        $screen_savers=collect($show->screen_savers()->where('publish_since', '>', $request_date)->get())->toArray();
+            //dd($screen_savers);
+        $minis=collect($display->minis()->where('publish_since', '>', $request_date)->get())->toArray();
+        //   return response()->json([
+        //     'data'=>[
+        //         'screen_savers'=>$screen_savers,
+        //         'minis'=>$minis,
+        //     ]
+        //     ]);
+        return array_merge($screen_savers, $minis);
+     }
+     public function get_minis(Display $display){
+        return $display->minis;
      }
     public function activate_and_print_test($json){
         $decoded=json_decode($json);

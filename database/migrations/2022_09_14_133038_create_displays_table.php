@@ -18,9 +18,11 @@ class CreateDisplaysTable extends Migration
             $table->string('name');
             $table->boolean("print");
             $table->timestamps();
-            $table->foreignId('slide_show_id')->constrained()
+            $table->foreignId('slide_show_id')->nullable()->constrained()
             ->onDelete('cascade')
-            ->onUpdate('cascade');
+            ->onUpdate('cascade')
+
+            ;
         });
     }
 

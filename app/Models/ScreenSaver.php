@@ -15,7 +15,7 @@ class ScreenSaver extends Model
     protected $table='screen_savers';
     protected $guarded =["id"];
     use HasFactory;
-     use CrudTrait;
+    use CrudTrait;
 
      public static function boot()
     {
@@ -25,7 +25,28 @@ class ScreenSaver extends Model
     });
     }
     public function slide_shows(){
-      return  $this->belongsToMany(SlideShow::class, 'slide_show_screen_saver','slide_show_id','screen_saver_id' );
+      return  $this->belongsToMany(SlideShow::class, 'slide_show_screen_saver','screen_saver_id' ,'slide_show_id');
+    }
+    public function reorderGroup($crud = false)
+    {
+        $shows=SlideShow::all();
+
+        $buttons = '';
+
+            $group = 'group=1';
+            $buttons .= '
+            <div class="btn-group">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.'Pokazy Slajdów'.'</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">';
+            foreach ($shows as $show) {
+                $buttons .= '<a class="dropdown-item" href="'.url($crud->route.'/reorder').'?'.$group.'">'.$show->name.'</a>';
+            }
+            $buttons .= '</div>
+                </div>
+            </div>';
+
+        return $buttons;
     }
     public function setImageAttribute($value)
     {

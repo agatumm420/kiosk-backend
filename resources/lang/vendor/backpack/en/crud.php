@@ -150,5 +150,6 @@ return [
         'save' => 'Zapisz tytuły',
     ],
     'image'=>'Zdjęcie',
-    'Image'=> 'ZDJĘCIE'
+    'Image'=> 'ZDJĘCIE',
+    'scheduler'=>'Kalendarz'
 ];

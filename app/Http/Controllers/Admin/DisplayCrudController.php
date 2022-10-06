@@ -41,6 +41,7 @@ class DisplayCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::addColumn([ 'name' => 'name', 'type' => 'text', 'label' => trans('backpack::panel.name')]);
+        CRUD::addColumn([ 'name' => 'map-image', 'type' => 'image', 'label' => trans('backpack::panel.image'), 'prefix'=>'/storage/']);
         CRUD::addColumn(['label'     => "Slajdy",
         'type'      => 'select',
         'name'      => 'slide_show_id',
@@ -51,7 +52,10 @@ class DisplayCrudController extends CrudController
 
         'model'     => "App\Models\SlideShow",
         'attribute' => 'name',]);
-        CRUD::addColumn(['label'=>"Czy drukuje?", "name"=>'print' , 'type'=>'select_from_array']);
+        CRUD::addColumn(['label'=>"Piętro ", "name"=>'level' , 'type'=>'select_from_array','options'     => [3=>'Parking',0 => 'Parter', 1 => 'Piętro I', 2=>'Piętro II'] ]);
+        CRUD::addColumn([ 'name' => 'place', 'type' => 'text', 'label' => 'Miejsce']);
+        CRUD::addColumn(['label'=>"Drukarka ", "name"=>'print' , 'type'=>'select_from_array','options' => [0 => 'Nie działa', 1 => 'Działa'] ]);
+
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -87,15 +91,26 @@ class DisplayCrudController extends CrudController
                  return $query->orderBy('name', 'ASC')->get();
              }),
             ]);
-        CRUD::addField([   // select_from_array
-            'name'        => 'print',
-            'label'       => "Czy drukuje?",
-            'type'        => 'select_from_array',
-            'options'     => [true => 'tak', false => 'nie'],
-            'allows_null' => false,
-            'default'     => false,
-            // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
-        ]);
+            CRUD::addField([   // select_from_array
+                'name'        => 'level',
+                'label'       => "Piętro",
+                'type'        => 'select_from_array',
+                'options'     => [3=>'Parking',0 => 'Parter', 1 => 'Piętro I', 2=>'Piętro II'],
+                'allows_null' => false,
+                'default'     => 1,
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+            ]);
+            CRUD::addField([ 'name' => 'place', 'type' => 'text', 'label' => 'Miejsce']);
+            CRUD::addField(['name' => 'map-image', 'type' => 'upload', 'upload'=>true,]); ///check if disk is right
+            CRUD::addField([   // select_from_array
+                'name'        => 'print',
+                'label'       => "Czy drukuje?",
+                'type'        => 'select_from_array',
+                'options'     => [true => 'tak', false => 'nie'],
+                'allows_null' => false,
+                'default'     => false,
+                // 'allows_multiple' => true, // OPTIONAL; needs you to cast this to array in your model;
+            ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

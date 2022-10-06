@@ -18,6 +18,7 @@ class SlideShowCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\ReorderOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -79,7 +80,8 @@ class SlideShowCrudController extends CrudController
             'entity'=>'screen_savers',
             'model'=>'App\Models\ScreenSaver',
             'attribute'=>'id',
-            'pivot'     => false,
+            'pivot'     => true,
+            'orderable'=>true
 
         ]);
         CRUD::addField([
@@ -110,4 +112,12 @@ class SlideShowCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
+    // protected function setupReorderOperation()
+    // {
+    //     // define which model attribute will be shown on draggable elements
+    //     $this->crud->set('reorder.label', 'screen_savers');
+    //     // define how deep the admin is allowed to nest the items
+    //     // for infinite levels, set it to 0
+    //     $this->crud->set('reorder.max_level', 1);
+    // }
 }

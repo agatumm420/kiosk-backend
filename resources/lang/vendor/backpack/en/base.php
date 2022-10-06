@@ -70,4 +70,5 @@ return [
     'confirm_new_password' => 'Potwierdź nowe hasło',
     'Dashboard'=>'Panel',
     'image'=>'Zdjęcie',
+    'scheduler'=>'Kalendarz',
 ];

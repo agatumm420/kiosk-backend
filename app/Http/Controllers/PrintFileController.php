@@ -7,12 +7,16 @@ use App\Models\PrintFile;
 
 class PrintFileController extends Controller
 {
-    public function stop_print(PrintFile $file){
-        $file->printed=true;
-        $file->save();
+    public function stop_print(PrintFile $print_file){
+        $print_file->printed=true;
+        $print_file->save();
         return response()->json([
             'id'=>$file->id,
             'printed'=>$file->printed,
         ]);
+        // dd([
+        //     'id'=>$print_file->id,
+        //     'printed'=>$print_file->printed,
+        // ]);
     }
 }

@@ -14,6 +14,6 @@ class SlideShow extends Model
        return $this->belongsToMany(ScreenSaver::class, 'slide_show_screen_saver', 'slide_show_id','screen_saver_id',);
     }
     public function displays(){
-        return $this->hasMany(Display::class);
+        return $this->belongsToMany(Display::class, 'displays_slide_shows', 'slide_show_id', 'display_id');
     }
 }
