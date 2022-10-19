@@ -15,7 +15,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+         $schedule->command('get:promotions')->daily();
+         $schedule->command('cleanstats:daily')->dailyAt('0:00');
+         $schedule->command('cleanstats:week')->weeklyOn(1, '0:00');
     }
 
     /**

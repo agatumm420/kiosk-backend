@@ -15,7 +15,7 @@ class CreateMinisTable extends Migration
     {
         Schema::create('minis', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('name');
             $table->dateTime('published_since')->nullable();
             $table->dateTime('published_untill')->nullable();

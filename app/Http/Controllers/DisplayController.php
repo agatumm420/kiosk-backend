@@ -15,6 +15,21 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 class DisplayController extends Controller
 {
+    public function set_socketId(Request $request){
+        $res=$request->input('data');
+        //dd($res);
+        $display=Display::where('channel', $res['channel'])->get();
+        $display[0]->socketId=$res['socketId'];
+        $display[0]->online=true;
+        $display[0]->save();
+        return response()->json([
+            'data'=>[
+                'channel'=>$display[0]->channel,
+                'socketId'=>$display[0]->socketId
+            ]
+        ]);
+    }
+
     public function register_display(Request $request){
         $res=$request->input('data');
         $display=Display::firstOrNew(['channel'=>$res['channel']], ['name'=>$res['name']], ['print'=>false]);
@@ -63,7 +78,7 @@ class DisplayController extends Controller
      public function get_schedule(Request $request,Display $display){
         $res=$request->input('data');
         $request_date= Carbon::create($res['year'], $res['month'], 1);
-
+        $end_date= Carbon::create($res['year'], $res['month'], 30);
       //  $show=SlideShow::where('id',$display->slide_show_id);
       $show=SlideShow::find($display->slide_show_id);
        // return $show->screen_savers()->where('publish_since', '>', $request_date)->where('published_since', '<',$request_date->endOfMonth())->where('published_since', null)->get();
@@ -76,9 +91,10 @@ class DisplayController extends Controller
 
         //     ]
         //     ]);
-        $screen_savers=collect($show->screen_savers()->where('publish_since', '>', $request_date)->get())->toArray();
+       // dd($show->screen_savers);
+        $screen_savers=collect($show->screen_savers()->get())->toArray();
             //dd($screen_savers);
-        $minis=collect($display->minis()->where('publish_since', '>', $request_date)->get())->toArray();
+        $minis=collect($display->minis()->get())->toArray();
         //   return response()->json([
         //     'data'=>[
         //         'screen_savers'=>$screen_savers,

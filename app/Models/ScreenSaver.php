@@ -14,6 +14,7 @@ class ScreenSaver extends Model
 {
     protected $table='screen_savers';
     protected $guarded =["id"];
+    protected $fillable=["image", "name", "published_since", "published_untill", "always", "forever","mini", "parent_id", "lft", "rgt", "depth" ];
     use HasFactory;
     use CrudTrait;
 
@@ -25,7 +26,7 @@ class ScreenSaver extends Model
     });
     }
     public function slide_shows(){
-      return  $this->belongsToMany(SlideShow::class, 'slide_show_screen_saver','screen_saver_id' ,'slide_show_id');
+      return  $this->belongsToMany(SlideShow::class, 'slide_show_screen_saver','screen_saver_id','slide_show_id' );
     }
     public function reorderGroup($crud = false)
     {
@@ -37,7 +38,7 @@ class ScreenSaver extends Model
             $buttons .= '
             <div class="btn-group">
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.'Pokazy Slajdów'.'</button>
+                    <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.'Ustaw kolejność w Pokazach Slajdów'.'</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">';
             foreach ($shows as $show) {
                 $buttons .= '<a class="dropdown-item" href="'.url($crud->route.'/reorder').'?'.$group.'">'.$show->name.'</a>';
@@ -118,4 +119,10 @@ class ScreenSaver extends Model
 //             $this->attributes[$attribute_name] = $file_path;
 //         }
 //     }
+    public function scopeScheduler($query, $start_date, $end_date){
+       return $query->where('published_since', '>', $start_date)->orWhere(function($query) {
+            $query->where('published_untill','<', $end_date);
+
+        });
+    }
 }

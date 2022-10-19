@@ -19,7 +19,12 @@ Route::group([
     Route::crud('display', 'DisplayCrudController');
     Route::get('dashboard', 'AdminController@dashboard');
     Route::get('scheduler', 'SchedulerController@scheduler');
+    Route::get('statistics', 'StatisticsController@statistics');
     Route::crud('slide-show', 'SlideShowCrudController');
     Route::crud('screen-saver', 'ScreenSaverCrudController');
     Route::crud('mini', 'MiniCrudController');
+    Route::get('charts/online-displays', 'Charts\OnlineDisplaysChartController@response')->name('charts.online-displays.index');
+    Route::get('charts/promotion-clicks', 'Charts\PromotionClicksChartController@response')->name('charts.promotion-clicks.index');
+    Route::get('charts/minis-clicks', 'Charts\MinisClicksChartController@response')->name('charts.minis-clicks.index');
+
 }); // this should be the absolute last line of this file

@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "galaxy-kiosks",
+    "private_key_id": "456baa253cf033d926159c3ede23c7e8962882cd",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQD0Sb8yfGucJFaX\nuBb2BiaDIhNvfoFWYgmU3TPVDYxqx+2qyh3VE2h8BdT+qXLbWhWK05YmdkEAL/aZ\nigYw6uu4lT/HIj2iRtgdqCMMuDhzGREz9IvWsgSY559ymnSgudPmLLeZM3Ni+tL2\nuvVdI0BgEvRhMfOSeZEaK0AvWceeodWq+MWSy8UC23naLYANsAsX42S/MODB953L\nASWotKZaaPMPeAkyoW3r3Fqu4n5tTXBYQSIGnksYRyj44u0eNQO4AIN6civl49y7\nvDGslc/gRZoygJ45xxdcgsrT2YgMe63XLfTIS4uNW8GF2Y9ne2qL6tm6nbEBz/bk\nsQLVUamxAgMBAAECggEAC4dU8oAgcHefDg0yKTVwWRkxN15uImphRyEa1nvLlAkA\nKIKeHo2KTWsVipiq2tsBIAJ9CC7lwalhzwxuXx3hFr6ValONetRy09B46ftiL51f\n3Fa2yECxupkYw2byaNjoPQlAd2aQFBxf+ySm2njEy5vtZE5gDzo1PLnMj0eChhQH\nx49T0XpJWaw4xMsXpjTPhs59HGDm+V8b9bBVH7XhzRX/HP9nx6pFt3ZkUaAVdGCx\ntqx6kBXuT37R+C2V8u7nNXtyVEE9QhFqjgjuHnbPt3EpWSdKoN8Mkrq5ry8OYcXo\n2hrqo/ZI5x0Zx/kWN/LpVKzrTZxJb0wT4vqStlLrwQKBgQD7s2A6Fhk/BPY29wF6\nDwwBYEQanyk9uCRpjH0VA65yWkQwqrLdlLLHTzTymGpgnVxhWhJd4jYu+qiLRHZn\n6e+0BRvJBT/HCFgUtDoixBxNJmc+5AmdAjY9DkfpU68K1YR3aEYJ0/mSu6212F3g\nVt9Itv+9Qav0uK74DODX/ru/kQKBgQD4dfUdDksDD9x4wnfgmVJ6oLQqPP+hcW0z\n81XyM7so9rGD9C33ZJvrt26CZasWG3/HcCRrwh3kxM5TdZ3vM3nZRgQlKfEuCQm8\n9ngFFnr3Ai3Vhc5rI9S6vzADlCfq87X9Ohte3+xhwqAovq3rlpBVuMwIU1vdXcof\nYK2a4zJ4IQKBgQCPG6fkntfv2tRa4An46kE7Lw7JzCDYtLAPSw97OUKgRe5rdUKJ\ndZhIdiJ2pG4nTJFP0LSMqKeCAoZ92Ikx//KH+jeYDeH7OiVKcEZ1qeclfmZJfcJx\ngOZxxILiiPAHSussMR9RSzKlWQwlTkXh3cLKRzIU2xf35mGlKz1T0cPR4QKBgGUC\n78gES5LPG/8scLgrHVEljJmveu4TwyXfxA1X4rtgsALJfvaZPJq0VIVG+Ctguq5G\ndUgp/yVGretYYgEhmGQxBvZk+tyQaBkeyuSmow9RH3kzkRwV0SKrH8YUsbXfpxlw\nSjhkKSIFkj9+Zg7lg4CWRL0NxsdUnhvrnijePWKBAoGBAJ6qqsurJ/mNpmFzJPDU\nvqRyckm3oOcpRLxiGI/0yhY2pF6Q8FWSrLeX2IX+gqDOSSK1+airkqMfRNxZG5oF\nd6aNmRDIdkSUnNoxOF9FWrnGrxuWKiih+h3jPYgNjnfAV+4esa5oEDhpadOSvlRz\nVDXM7yCPe751XnlGvnT2b6Cj\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-un8bj@galaxy-kiosks.iam.gserviceaccount.com",
+    "client_id": "114564426500152099610",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-un8bj%40galaxy-kiosks.iam.gserviceaccount.com"
+  }

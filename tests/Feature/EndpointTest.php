@@ -106,4 +106,21 @@ class EndpointTest extends TestCase
 
 
     }
+    public function test_set_socket(){
+        $user=User::find(1);
+        $response = $this->actingAs($user)->postJson('/api/set_socketId' ,[
+            'data'=>[
+                'channel'=>'display1',
+                'socketId'=>'werjwiworei'
+            ]
+        ]);
+       // dd($response);
+        $response->assertStatus(200);
+        // ->assertJson(fn (AssertableJson $json) =>
+        //     $json->where('display_id', 2)
+        //          ->has('print_file')
+        //          ->where('print', true)
+
+
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Events\PrintSend;
 use Illuminate\Support\Facades\Route;
+use BeyondCode\LaravelWebSockets\Facades\WebSocketsRouter;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::post('/broadcast', function (){
 
     //  ));
 });
+WebSocketsRouter::webSocket('/my-websocket/app/{appKey}/channel/{channel}', App\CustomWebSocketHandler::class); //co tutaj

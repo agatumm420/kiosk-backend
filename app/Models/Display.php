@@ -20,7 +20,7 @@ class Display extends Model
         return  $this->belongsTo(SlideShow::class, "slide_show_id", "id");
      }
      public function minis(){
-        return $this->belongsToMany(Mini::class,'minis_displays', 'display_id', 'mini_id' ); 
+        return $this->belongsToMany(Mini::class,'minis_displays', 'display_id', 'mini_id' );
      }
      public function setImageAttribute($value)
      {
@@ -63,4 +63,5 @@ class Display extends Model
      $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
      // return  $this->attributes[$attribute_name] = $public_destination_path.'/'.$filename;
  }
+
 }

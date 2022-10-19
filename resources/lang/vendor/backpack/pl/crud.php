@@ -149,4 +149,5 @@ return [
         'click' => 'Upuść pliki tutaj lub kliknij, aby przesłać.',
         'save' => 'Zapisz tytuły',
     ],
+    'Statistics'=>'Statystyki'
 ];

@@ -19,8 +19,11 @@ class DisplayFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'channel' => $this->faker->name(),
-            'print' => false,
+            'print' => true,
             'slide_show_id' => $this->faker->numberBetween(1,2),
+            'level'=>$this->faker->numberBetween(0,3),
+            'place'=>$this->faker->name(),
+            'map-image'=>$this->faker->image('public/storage/public/images',640, 480),
 
         ];
     }

@@ -25,6 +25,7 @@ class AdminController extends Controller
         $count=Display::all()->count();
         $scanner_count=Display::where('scanner', true)->count();
         $printer_count=Display::where('print', true)->count();
+        $online_count=Display::where('online', true)->count();
         $displays_widget=Widget::make([
             'type'        => 'progress',
             'class'       => 'card text-white bg-primary mb-2',
@@ -51,11 +52,40 @@ class AdminController extends Controller
                     'body'   => $printer_count,
                 ]
                 ]);
+                $online_widget=Widget::make([
+                    'type'       => 'card',
+                    // 'wrapper' => ['class' => 'col-sm-6 col-md-4'], // optional
+                    'class'   => 'card bg-dark text-white', // optional
+                    'content'    => [
+                        'header' => 'Ekrany Online', // optional
+                        'body'   => $online_count,
+                    ]
+                    ]);
                 Widget::add([
                     'type'    => 'div',
                     'class'   => 'row',
                     'content' => [$displays_widget, $scanner_widget, $printer_widget]
                 ]);
+                Widget:: add([
+                    'type'    => 'div',
+                    'class'   => 'row',
+                    'content' => [$online_widget]
+                ]);
+
+                // Widget::add([
+                //     'type'       => 'chart',
+                //     'controller' => \App\Http\Controllers\Admin\Charts\WeeklyUsersChartController::class,
+
+                //     // OPTIONALS
+
+                //     // 'class'   => 'card mb-2',
+                //     // 'wrapper' => ['class'=> 'col-md-6'] ,
+                //     // 'content' => [
+                //          // 'header' => 'New Users',
+                //          // 'body'   => 'This chart should make it obvious how many new users have signed up in the past 7 days.<br><br>',
+                //     // ],
+                // ]);
+
 
         return view(backpack_view('dashboard'), $this->data);
     }

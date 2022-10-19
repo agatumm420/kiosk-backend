@@ -11,6 +11,7 @@ class Mini extends Model
    use CrudTrait;
     use HasFactory;
     protected $guarded =["id"];
+    protected $fillable=["image", "name", "published_since", "published_untill", "always", "forever","mini", "parent_id", "lft", "rgt", "depth" ];
     public static function boot()
     {
     parent::boot();

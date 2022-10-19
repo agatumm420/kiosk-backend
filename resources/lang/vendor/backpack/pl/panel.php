@@ -65,5 +65,6 @@ return [
 	'employees' => 'Pracownicy',
     'Actions'=>'Operacje',
     'dashboard'=>'Panel nawigacyjny',
+    'Statistics'=>'Statystyki'
 
 ];

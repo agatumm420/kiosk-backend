@@ -39,4 +39,8 @@ class ShopController extends Controller
         $response=Http::get('https://galaxyapp.galaxy-centrum.pl/api/plan');
         return $response;
     }
+    public function promotion(Request $request){
+        $response=Http::get('https://galaxyapp.galaxy-centrum.pl/api/promotion');
+        return $response;
+    }
 }

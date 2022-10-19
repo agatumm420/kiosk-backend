@@ -20,7 +20,7 @@
 <span data-order="{{ $value ?? '' }}">
     @includeWhen(!empty($column['wrapper']), 'crud::columns.inc.wrapper_start')
         @if($column['escaped'])
-            {{ $column['text'] }}
+            {{ $column['text']==''?'Zawsze /Na zawsze' :$column['text']; }}
 
         @else
             {!! $column['text'] !!}

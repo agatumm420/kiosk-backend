@@ -151,5 +151,6 @@ return [
     ],
     'image'=>'Zdjęcie',
     'Image'=> 'ZDJĘCIE',
-    'scheduler'=>'Kalendarz'
+    'scheduler'=>'Kalendarz',
+    'statistics'=>'Statystyki'
 ];

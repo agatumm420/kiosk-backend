@@ -71,4 +71,5 @@ return [
     'Dashboard'=>'Panel',
     'image'=>'Zdjęcie',
     'scheduler'=>'Kalendarz',
+    'statistics'=>'Statystyki'
 ];

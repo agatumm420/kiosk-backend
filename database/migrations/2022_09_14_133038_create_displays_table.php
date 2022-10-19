@@ -16,7 +16,7 @@ class CreateDisplaysTable extends Migration
         Schema::create('displays', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->boolean("print");
+            $table->tinyInteger("print")->default(1);
             $table->timestamps();
             $table->foreignId('slide_show_id')->nullable()->constrained()
             ->onDelete('cascade')

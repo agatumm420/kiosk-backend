@@ -133,6 +133,9 @@ return [
         'g-recaptcha-response' => [
             'recaptcha' => 'Udowodnij że nie jesteś robotem',
         ],
+        'image'=>[
+            'required'=>'Załącz zdjęcie',
+        ],
         'email' => [
             'required' => 'Podaj swój e-mail',
             'confirmed' => 'Pole e-mail muszą być identyczne',
