@@ -57,11 +57,11 @@ class PromotionTest extends TestCase
     //     //dd($response);
     //     $response->assertStatus(200);
     // }
-    public function test_promo_add_clicks(){
-            $response=$this->get('/api/add_to_promotion/1956');
-        //dd($response);
-        $response->assertStatus(200);
-    }
+    // public function test_promo_add_clicks(){
+    //         $response=$this->get('/api/add_to_promotion/1970');
+    //     //dd($response);
+    //     $response->assertStatus(200);
+    // }
     public function test_minis_add_clicks(){
         $response=$this->get('/api/add_to_mini/1');
     //dd($response);

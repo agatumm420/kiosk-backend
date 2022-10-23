@@ -13,6 +13,19 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
+class Slider{
+    public $src;
+    public $name;
+    public function __constructor($src, $name){
+        $this->src=$src;
+        $this->name=$name;
+    }
+}
+class SliderFactory{
+    public static function create($src, $name){
+        return new Slider($src, $name);
+    }
+}
 class DisplayController extends Controller
 {
     public function set_socketId(Request $request){
@@ -54,23 +67,74 @@ class DisplayController extends Controller
       //    }
           //$show=$display->slide_show();
          // dd($display->slide_show_id);
-         $response_array=[];
+
+
 
          $show=SlideShow::find($display->slide_show_id);
-         array_push($response_array, response()->json([
-              'data' => [
-                  'slide_show_name' =>$show->name,
-
-              ]
-              ]));
+        //dd($show->screen_savers);
           // dd($show->screen_savers as );
-          foreach($show->screen_savers as $screen_s){
-                     // dd($screen_s);
-                     if($screen_s->image!=null)
-                   array_push($response_array,response()->file(public_path().'/storage/'.$screen_s->image));
-                 }
+        //   foreach($show->screen_savers as $screen_s){
+        //              // dd($screen_s);
+        //              if($screen_s->image!=null)
+        //            array_push($response_array,response()->file(public_path().'/storage/'.$screen_s->image));
+        //          }
+        $screen_savers=$show->screen_savers()->where('published_untill','>=', Carbon::now())
 
-          return $response_array;
+        ->where('published_since','<=', Carbon::now())
+
+
+
+        ->get()->toArray();
+        //dd($screen_savers);
+            $screen_savers_maped=array_map(function($obj){
+               //return
+
+               $slider_var=new Slider('https://ws.galaxy-centrum.pl/storage/'.$obj['image'], $obj['name'] );
+               $slider_var->src=$obj['image'];
+               $slider_var->name=$obj['name'];
+               //dd($slider_var);
+                return $slider_var;
+            },$screen_savers);
+            //dd($screen_savers_maped);
+            $minis=$display->minis()->where('published_untill','>=', Carbon::now())
+
+            ->where('published_since','<=', Carbon::now())
+
+            ->get()->toArray();
+
+            $minis_mapped=array_map(function($obj){
+
+                $slider_var=new Slider('https://ws.galaxy-centrum.pl/storage/'.$obj['image'], $obj['name'] );
+               $slider_var->src=$obj['image'];
+               $slider_var->name=$obj['name'];
+               //dd($slider_var);
+                return $slider_var;
+            },$minis);
+            //dd($minis_mapped);
+            $startTime;
+            $endTime;
+            $day_of_week=date('w', strtotime(Carbon::now()));
+            //$day_of_week=date('w', strtotime(Carbon::now()->addDays(3)));
+            //dd($day_of_week);
+            if($day_of_week=0){ //czy jest 0
+                //jeśli handlowa
+               $startTime=Carbon::now()->todateString().' 09:00:00';
+               $endTime=Carbon::now()->todateString().' 20:00:00';
+            }
+            else{
+                $startTime=Carbon::now()->todateString().' 07:30:00';
+               $endTime=Carbon::now()->todateString().' 22:00:00';
+            }
+
+          return response()->json([
+            "slider"=> $minis_mapped,
+            "full_screen_slider"=> $screen_savers_maped,
+            "wayfinder_id"=> $display->wayfinder_id,
+            'startTime'=>$startTime,
+
+            'finishTime'=>$endTime,
+
+          ]);
      }
      public function get_displays(){
        return Display::all(); //czy mogą być dwa w tej samej
@@ -153,7 +217,7 @@ class DisplayController extends Controller
                 $display=Display::find($res['display_id']);
                 $display->print_files()->attach($print_file->id);
 
-                $display->print=true;
+
                 $display->save();
                 broadcast(new PrintSend($display));
         return response()->json([

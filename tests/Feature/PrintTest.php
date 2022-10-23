@@ -21,25 +21,26 @@ class DisplayTest extends TestCase
     //     $response = $this->actingAs($user)->get("api/getdisplay/{$display->id}");
     //     //dd($response);
     //     $response->assertStatus(200);
-    // // }
-    // public function test_activate_print(){
-    //     $response = $this->post('/api/activate_printer',
-    //          ['data'=>[
-    //             'display_id'=>2,
-    //             'user_name'=>'Aga',
-    //             'reward_name'=>'nagroda 1',
-    //             'print'=>false
-    //          ]
-    //     ]);
-    // //    dd($response);
-    //     $response->assertStatus(200);
-    //     // ->assertJson(fn (AssertableJson $json) =>
-    //     //     $json->where('display_id', 2)
-    //     //          ->has('print_file')
-    //     //          ->where('print', true)
+    //  }
+    public function test_activate_print(){
+        $response = $this->post('/api/activate_printer',
+             ['data'=>[
+                'display_id'=>2,
+                'user_name'=>'Aga',
+                'reward_name'=>'nagroda 1',
 
-    //     // );
-    // }
+             ]
+        ]);
+
+    //    dd($response);
+        $response->assertStatus(200);
+        // ->assertJson(fn (AssertableJson $json) =>
+        //     $json->where('display_id', 2)
+        //          ->has('print_file')
+        //          ->where('print', true)
+
+        // );
+    }
     // public function test_registration(){
     //     $response = $this->post('/api/register',
     //     ['data'=>[

@@ -13,9 +13,9 @@ class MiniController extends Controller
         $mini->clicks_total+=1;
         $mini->save();
         return response()->json([
-            "today"=>$mini->clicks_today,
-            "week"=>$mini->clicks_week,
-            "total"=>$mini->clicks_total
+            'data'=>[
+                'success'=>true
+            ]
 
         ]);
     }

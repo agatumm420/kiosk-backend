@@ -13,9 +13,9 @@ class PromotionController extends Controller
         $promotion->clicks_total+=1;
         $promotion->save();
         return response()->json([
-            "today"=>$promotion->clicks_today,
-            "week"=>$promotion->clicks_week,
-            "total"=>$promotion->clicks_total
+            'data'=>[
+                'success'=>true
+            ]
 
         ]);
     }

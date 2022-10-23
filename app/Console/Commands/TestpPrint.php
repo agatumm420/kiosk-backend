@@ -38,12 +38,13 @@ class TestpPrint extends Command
      */
     public function handle()
     {
-        $response=Http::post('https://galaxyapp.galaxy-centrum.pl/api/activate_printer',['data'=>[
+        $response=Http::post('http://galaxyapp.galaxy-centrum.pl/api/activate_printer',['data'=>[
             'display_id'=>2,
             'user_name'=>'Aga',
             'reward_name'=>'nagroda 1',
             'print'=>false
          ]]);
+         dd($response);
         return 0;
     }
 }
