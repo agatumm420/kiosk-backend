@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use App\Models\Promotion as Promo;
 class Shop{
     public $id;
     public $name;
@@ -461,10 +462,11 @@ class ShopController extends Controller
         ]]);
     }
     public function promotion(Request $request){
-        $response=Http::get('https://galaxyapp.galaxy-centrum.pl/api/promotion');
-        $data=$response['data'];
-        $promotions=$data;
+        // $response=Http::get('https://galaxyapp.galaxy-centrum.pl/api/promotion');
+        // $data=$response['data'];
+        $promotions=Promo::all()->toArray();
         $promotions_mapped=array_map(function($obj){
+           // dd($obj);
             $promo=new Promotion($obj['id'], $obj['name'], $obj['src']);
             $promo->id=$obj['id'];
             $promo->name=$obj['name'];

@@ -49,7 +49,7 @@ class EndpointTest extends TestCase
     public function test_gastronomy(){
         $user=User::find(1);
         $response = $this->actingAs($user)->get('/api/gastronomy' );
-       //  dd($response);
+        // dd($response);
         $response->assertStatus(200);
         // ->assertJson(fn (AssertableJson $json) =>
         //     $json->where('display_id', 2)

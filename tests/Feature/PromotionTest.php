@@ -40,18 +40,11 @@ class PromotionTest extends TestCase
 
     //     // );
     // }
-    // public function test_registration(){
-    //     $response = $this->post('/api/register',
-    //     ['data'=>[
-    //        'channel'=>'test_channel',
-    //        'name'=>'Test Display',
-    //        'print'=>false
-
-    //     ]
-    //     ]);
-    //     //dd($response);
-    //     $response->assertStatus(200);
-    // }
+    public function test_promotion(){
+        $response = $this->get('/api/promotions',);
+        //dd($response);
+        $response->assertStatus(200);
+    }
     // public function test_disactivate_print(){
     //     $response=$this->get('/api/stop_print/1');
     //     //dd($response);
